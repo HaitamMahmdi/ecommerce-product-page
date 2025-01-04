@@ -1,0 +1,57 @@
+body {
+  font-family: "Kumbh Sans", serif;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+img {
+  width: 100%;
+  height: 100%;
+}
+button,
+li {
+  display: block;
+}
+input,
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+}
+@media (min-width: 2560px) {
+  .container {
+    max-width: 1440px;
+  }
+}
+@media (max-width: 1440px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: 768px;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    width: 425px;
+  }
+}
+@media (max-width: 425px) {
+  .container {
+    width: 100%;
+  }
+}

@@ -1,0 +1,315 @@
+body {
+  font-family: "Kumbh Sans", serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+button,
+li {
+  display: block;
+}
+
+input,
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+}
+
+@media (min-width: 2560px) {
+  .container {
+    max-width: 1440px;
+  }
+}
+@media (max-width: 1440px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+@media (max-width: 1024px) {
+  .container {
+    width: 768px;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    width: 425px;
+  }
+}
+@media (max-width: 425px) {
+  .container {
+    width: 100%;
+  }
+}
+body {
+  height: 1000vh;
+}
+
+header {
+  position: relative;
+}
+header .container {
+  display: flex;
+  padding-bottom: 0px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid hsl(223, 64%, 98%);
+}
+header .container .dropdownButton {
+  display: none;
+}
+header .container ul.d-link-list {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  background-color: hsl(0, 0%, 100%);
+  height: 100vh;
+  width: 320px;
+  padding-top: 1.25rem;
+  padding-left: 25px;
+  box-shadow: 38px 19px 1000rem 1000rem rgba(0, 0, 0, 0.5333333333);
+}
+header .container ul.d-link-list button.close {
+  display: block;
+  font-size: 1.12rem;
+  padding: 0.625rem 0rem;
+}
+header .container ul.d-link-list a.nav-link {
+  display: block;
+  font-size: 1.12rem;
+  color: rgba(0, 0, 0, 0.75);
+  font-weight: bold;
+  padding: 0.625rem 0rem;
+}
+header .container nav {
+  margin-left: 1.5rem;
+  flex-grow: 2;
+}
+header .container nav ul.link-list {
+  height: 100%;
+  display: flex;
+}
+header .container nav ul.link-list a.nav-link {
+  display: block;
+  font-size: 1.12rem;
+  color: hsl(219, 9%, 45%);
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding: 2.5rem 0rem;
+  border-bottom: 0.3125rem solid transparent;
+  transition: 0.3s;
+}
+header .container nav ul.link-list a.nav-link:hover {
+  color: rgba(0, 0, 0, 0.75);
+  border-bottom-color: hsl(26, 100%, 55%);
+}
+header .container div.userActions {
+  display: flex;
+}
+header .container div.userActions button.cart {
+  position: relative;
+}
+header .container div.userActions button.cart .number-of-cards {
+  background-color: hsl(26, 100%, 55%);
+  border-radius: 5px;
+  font-size: 0.7rem;
+  color: hsl(0, 0%, 100%);
+  opacity: 0;
+}
+header .container div.userActions button.cart div.list-product {
+  position: absolute;
+  box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.2392156863);
+  background-color: hsl(0, 0%, 100%);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: 18.875rem;
+  right: 0;
+}
+header .container div.userActions button.cart div.list-product div.card {
+  display: flex;
+  margin: 1rem 0rem;
+  align-items: center;
+  justify-content: space-between;
+  color: hsl(219, 9%, 45%);
+}
+header .container div.userActions button.cart div.list-product div.card img.product-img {
+  width: 3.1rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+header .container div.userActions button.cart div.list-product div.card div.text {
+  margin-left: 0.5rem;
+}
+header .container div.userActions button.cart div.list-product input[value=Chackout] {
+  background-color: hsl(26, 100%, 55%);
+  width: 100%;
+  height: 3rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: 1.2rem;
+  border-radius: 0.5rem;
+}
+header .container div.userActions button.userAvatar {
+  width: 3.12rem;
+  border: 2px solid transparent;
+  margin-left: 1.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: 0.3s;
+}
+header .container div.userActions button.userAvatar:hover {
+  border-color: hsl(26, 100%, 55%);
+}
+
+main {
+  margin: 80px 0px;
+}
+main .container .ProductCard {
+  display: flex;
+  flex-wrap: wrap;
+}
+main .container .ProductCard .ProductDisplay {
+  width: 45%;
+}
+main .container .ProductCard .ProductDisplay div.image-product {
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+main .container .ProductCard .ProductDisplay ul {
+  padding-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+}
+main .container .ProductCard .ProductDisplay ul li img {
+  cursor: pointer;
+  border: 5px solid transparent;
+  width: 7rem;
+  border-radius: 1.5rem;
+  transition: 0.3s;
+  overflow: hidden;
+}
+main .container .ProductCard .productDescription {
+  width: 55%;
+  padding: 5rem;
+}
+main .container .ProductCard .productDescription .company-name {
+  color: hsl(219, 9%, 45%);
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+main .container .ProductCard .productDescription .product-name {
+  font-size: 3rem;
+  color: rgba(0, 0, 0, 0.75);
+}
+main .container .ProductCard .productDescription .product-description {
+  color: hsl(219, 9%, 45%);
+  margin-top: 3rem;
+  line-height: 1.8;
+}
+main .container .ProductCard .productDescription .product-price {
+  margin-top: 3rem;
+}
+main .container .ProductCard .productDescription .product-price .new-price {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+main .container .ProductCard .productDescription .product-price .new-price .discount-value {
+  font-size: 1.2rem;
+  padding: 0.3rem 0.4rem;
+  border-radius: 10px;
+  background-color: Black;
+  color: hsl(0, 0%, 100%);
+  margin-left: 0.2rem;
+}
+main .container .ProductCard .productDescription .product-price .old-price {
+  color: hsl(219, 9%, 45%);
+  font-size: 1.2rem;
+  text-decoration: line-through;
+  font-weight: 700;
+}
+main .container .ProductCard .productDescription .count-and-pay {
+  display: flex;
+  margin-top: 3rem;
+  justify-content: space-between;
+}
+main .container .ProductCard .productDescription .count-and-pay .counter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 40%;
+  padding: 1rem 1.25rem;
+}
+main .container .ProductCard .productDescription .count-and-pay .counter button {
+  display: flex;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+}
+main .container .ProductCard .productDescription .count-and-pay .add-to-cart {
+  width: 55%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: hsl(26, 100%, 55%);
+  color: rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+  padding: 0.8rem 1.25rem;
+  transition: 0.3s;
+}
+main .container .ProductCard .productDescription .count-and-pay .add-to-cart:hover {
+  background-color: #ffb984;
+}
+main .container .ProductCard .productDescription .count-and-pay .add-to-cart p {
+  margin-left: 0.3rem;
+  font-weight: 800;
+}
+
+@media (max-width: 768px) {
+  header .container {
+    justify-content: unset;
+    border: none;
+  }
+  header .container div.logo {
+    flex-grow: 2;
+    margin-left: 1rem;
+  }
+  header .container .dropdownButton {
+    display: block;
+  }
+  header .container nav {
+    display: none;
+  }
+  header .container div.userActions button.userAvatar {
+    width: 2rem;
+  }
+  main .container .ProductCard .ProductDisplay {
+    width: 100% !important;
+  }
+  main .container .ProductCard .productDescription {
+    width: 100% !important;
+  }
+}/*# sourceMappingURL=style.css.map */
