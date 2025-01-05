@@ -59,10 +59,6 @@ button {
     width: 100%;
   }
 }
-body {
-  height: 1000vh;
-}
-
 header {
   position: relative;
 }
@@ -78,6 +74,7 @@ header .container .dropdownButton {
 }
 header .container ul.d-link-list {
   position: absolute;
+  z-index: 2000;
   display: none;
   top: 0;
   left: 0;
@@ -136,13 +133,28 @@ header .container div.userActions button.cart .number-of-cards {
   opacity: 0;
 }
 header .container div.userActions button.cart div.list-product {
+  display: none;
+  z-index: 1000;
   position: absolute;
-  box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.2392156863);
+  box-shadow: 0px 8px 7px 2px rgba(0, 0, 0, 0.14);
   background-color: hsl(0, 0%, 100%);
   padding: 1rem;
   border-radius: 0.5rem;
   width: 18.875rem;
   right: 0;
+}
+header .container div.userActions button.cart div.list-product .list-product-title {
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  padding-top: 0.5rem;
+  padding-bottom: 1.2rem;
+}
+header .container div.userActions button.cart div.list-product .cart-is-empty {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: hsl(219, 9%, 45%);
 }
 header .container div.userActions button.cart div.list-product div.card {
   display: flex;
@@ -183,6 +195,68 @@ header .container div.userActions button.userAvatar:hover {
 main {
   margin: 80px 0px;
 }
+main .container {
+  position: relative;
+}
+main .container div.product-overview {
+  position: absolute;
+  display: none;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  box-shadow: 0px 0px 100rem 100rem rgba(0, 0, 0, 0.7215686275);
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.7215686275);
+}
+main .container div.product-overview button[aria-label="close product overview"] {
+  margin-left: auto;
+  margin-bottom: 2rem;
+}
+main .container div.product-overview div.image-product {
+  position: relative;
+}
+main .container div.product-overview div.image-product img {
+  border-radius: 1.5rem;
+}
+main .container div.product-overview div.image-product .previous-button,
+main .container div.product-overview div.image-product .next-button {
+  background-color: white;
+  position: absolute;
+  border-radius: 50%;
+  width: 2.8rem;
+  display: flex;
+  height: 2.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  align-items: center;
+  justify-content: center;
+}
+main .container div.product-overview div.image-product .previous-button:hover,
+main .container div.product-overview div.image-product .next-button:hover {
+  color: hsl(26, 100%, 55%);
+}
+main .container div.product-overview div.image-product .previous-button {
+  left: -1.4rem;
+}
+main .container div.product-overview div.image-product .next-button {
+  right: -1.4rem;
+}
+main .container div.product-overview ul {
+  padding-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+}
+main .container div.product-overview ul li img {
+  cursor: pointer;
+  border: 5px solid transparent;
+  width: 7rem;
+  border-radius: 1.5rem;
+  transition: 0.3s;
+  overflow: hidden;
+}
+main .container div.product-overview ul li img:hover {
+  filter: brightness();
+}
 main .container .ProductCard {
   display: flex;
   flex-wrap: wrap;
@@ -191,8 +265,28 @@ main .container .ProductCard .ProductDisplay {
   width: 45%;
 }
 main .container .ProductCard .ProductDisplay div.image-product {
+  position: relative;
   border-radius: 1.5rem;
   overflow: hidden;
+}
+main .container .ProductCard .ProductDisplay div.image-product .previous-button,
+main .container .ProductCard .ProductDisplay div.image-product .next-button {
+  display: none;
+  background-color: white;
+  position: absolute;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  align-items: center;
+  justify-content: center;
+}
+main .container .ProductCard .ProductDisplay div.image-product .previous-button {
+  left: 1rem;
+}
+main .container .ProductCard .ProductDisplay div.image-product .next-button {
+  right: 1rem;
 }
 main .container .ProductCard .ProductDisplay ul {
   padding-top: 3rem;
@@ -207,6 +301,9 @@ main .container .ProductCard .ProductDisplay ul li img {
   transition: 0.3s;
   overflow: hidden;
 }
+main .container .ProductCard .ProductDisplay ul li img:hover {
+  filter: opacity(0.5);
+}
 main .container .ProductCard .productDescription {
   width: 55%;
   padding: 5rem;
@@ -219,7 +316,7 @@ main .container .ProductCard .productDescription .company-name {
   font-weight: 700;
 }
 main .container .ProductCard .productDescription .product-name {
-  font-size: 3rem;
+  font-size: clamp(1.8rem, 10vw, 3rem);
   color: rgba(0, 0, 0, 0.75);
 }
 main .container .ProductCard .productDescription .product-description {
@@ -261,6 +358,8 @@ main .container .ProductCard .productDescription .count-and-pay .counter {
   align-items: center;
   justify-content: space-between;
   width: 40%;
+  background-color: hsl(223, 64%, 98%);
+  border-radius: 0.8125rem;
   padding: 1rem 1.25rem;
 }
 main .container .ProductCard .productDescription .count-and-pay .counter button {
@@ -277,7 +376,7 @@ main .container .ProductCard .productDescription .count-and-pay .add-to-cart {
   background-color: hsl(26, 100%, 55%);
   color: rgba(0, 0, 0, 0.75);
   border-radius: 10px;
-  padding: 0.8rem 1.25rem;
+  padding: 1rem 1.25rem;
   transition: 0.3s;
 }
 main .container .ProductCard .productDescription .count-and-pay .add-to-cart:hover {
@@ -288,6 +387,22 @@ main .container .ProductCard .productDescription .count-and-pay .add-to-cart p {
   font-weight: 800;
 }
 
+@media (max-width: 1024px) {
+  main .container .ProductCard .ProductDisplay {
+    width: 100% !important;
+  }
+  main .container .ProductCard .productDescription {
+    width: 100% !important;
+  }
+}
+@media (max-width: 425px) {
+  main {
+    margin-top: 0.8rem !important;
+  }
+  main .list-product {
+    right: -62px !important;
+  }
+}
 @media (max-width: 768px) {
   header .container {
     justify-content: unset;
@@ -306,10 +421,34 @@ main .container .ProductCard .productDescription .count-and-pay .add-to-cart p {
   header .container div.userActions button.userAvatar {
     width: 2rem;
   }
-  main .container .ProductCard .ProductDisplay {
-    width: 100% !important;
+  main .container {
+    padding: 0;
+  }
+  main .container .div.product-overview {
+    display: none !important;
+  }
+  main .container .ProductCard .ProductDisplay div.image-product {
+    border-radius: 0px;
+  }
+  main .container .ProductCard .ProductDisplay div.image-product .previous-button,
+  main .container .ProductCard .ProductDisplay div.image-product .next-button {
+    display: flex;
+  }
+  main .container .ProductCard .ProductDisplay ul {
+    display: none;
   }
   main .container .ProductCard .productDescription {
+    width: 100% !important;
+    padding: 1rem;
+  }
+  main .container .ProductCard .productDescription .count-and-pay {
+    flex-direction: column;
+  }
+  main .container .ProductCard .productDescription .counter {
+    width: 100% !important;
+    margin-bottom: 2rem;
+  }
+  main .container .ProductCard .productDescription .add-to-cart {
     width: 100% !important;
   }
 }/*# sourceMappingURL=style.css.map */

@@ -14,9 +14,11 @@ dropDown.addEventListener("click", showDropDownList);
 closeDropDown.addEventListener("click", hideDropDownList);
 
 // change the Images in ProductCard:
-const imageProduct = document.getElementById(`image-product`);
-const thumbnailNumber = document.querySelectorAll(`#product-thumbnail`);
-
+const imageProduct = document.querySelector(`.ProductCard #image-product`);
+const thumbnailNumber = document.querySelectorAll(
+  `.ProductCard #product-thumbnail`
+);
+// in  768px ~ 1440px screens
 let isclikd = null;
 const changeImageProduct = (e) => {
   const imgN = e.target.getAttribute(`thumbnail-number`);
@@ -36,6 +38,111 @@ thumbnailNumber.forEach((el) => {
   el.addEventListener(`click`, changeImageProduct);
 });
 
+// open and close ProductOverview & change the Images in  ProductOverview
+const imageProductOverview = document.querySelector(
+  `#ProductOverview #image-product`
+);
+const thumbnailNumberOverview = document.querySelectorAll(
+  `#ProductOverview #product-thumbnail`
+);
+// in  768px ~ 1440px screens
+let isclikdOverview = null;
+const changeImageProductInOverview = (e) => {
+  const imgN = e.target.getAttribute(`thumbnail-number`);
+  if (isclikdOverview) {
+    console.log(isclikdOverview);
+    isclikdOverview.style.cssText = `filter: opacity(1); border-color:transparent;`;
+    isclikdOverview = e.target;
+    imageProductOverview.src = `./images/image-product-${imgN}.jpg`;
+    e.target.style.cssText = `filter: opacity(0.4); border-color:hsl(26, 100%, 55%);`;
+  } else {
+    isclikdOverview = e.target;
+    console.log(isListOpen);
+    imageProductOverview.src = `./images/image-product-${imgN}.jpg`;
+    e.target.style.cssText = `filter: opacity(0.4); border-color:hsl(26, 100%, 55%);`;
+  }
+};
+
+thumbnailNumberOverview.forEach((el) => {
+  el.addEventListener(`click`, changeImageProductInOverview);
+});
+
+const previousButtonInOverview = document.querySelector(
+  `#ProductOverview #previousButton`
+);
+const nextButtonInOverview = document.querySelector(
+  `#ProductOverview #nextButton`
+);
+let imgNumberO = 0;
+const nextImageInOverview = () => {
+  if (imgNumberO < 4) {
+    imgNumberO += 1;
+    imageProductOverview.src = ` ./images/image-product-${imgNumberO}.jpg`;
+  } else {
+    imgNumberO = 1;
+    imageProductOverview.src = ` ./images/image-product-${imgNumberO}.jpg`;
+  }
+};
+const previousImgInOverview = () => {
+  if (imgNumberO > 1) {
+    imgNumberO -= 1;
+    imageProductOverview.src = ` ./images/image-product-${imgNumberO}.jpg`;
+  } else {
+    imgNumberO = 4;
+    imageProductOverview.src = ` ./images/image-product-${imgNumberO}.jpg`;
+  }
+};
+nextButtonInOverview.addEventListener(`click`, nextImageInOverview);
+previousButtonInOverview.addEventListener(`click`, previousImgInOverview);
+
+const mainContainer = document.getElementById(`mainContainer`);
+const ProductOverview = document.getElementById(`ProductOverview`);
+const closeProductOverview = document.getElementById(`closeProductOverview`);
+const imageProductDiv = document.querySelector(`.ProductCard #imageProduct`);
+console.log(imageProductDiv);
+let isappend = false;
+const addProductOverview = () => {
+  if (!isappend) {
+    isappend = true;
+    ProductOverview.style.display = `block `;
+  }
+};
+const closePOverview = () => {
+  if (isappend) {
+    isappend = false;
+    ProductOverview.style.display = `none `;
+  }
+};
+if (screen.width >= 1024) {
+  imageProductDiv.addEventListener(`click`, addProductOverview);
+}
+
+closeProductOverview.addEventListener(`click`, closePOverview);
+
+// in phons 325px ~ 768px:
+const previousButton = document.querySelector(`.ProductCard #previousButton`);
+const nextButton = document.querySelector(`.ProductCard #nextButton`);
+let imgNumber = 0;
+const nextImage = () => {
+  if (imgNumber < 4) {
+    imgNumber += 1;
+    imageProduct.src = ` ./images/image-product-${imgNumber}.jpg`;
+  } else {
+    imgNumber = 1;
+    imageProduct.src = ` ./images/image-product-${imgNumber}.jpg`;
+  }
+};
+const previousImg = () => {
+  if (imgNumber > 1) {
+    imgNumber -= 1;
+    imageProduct.src = ` ./images/image-product-${imgNumber}.jpg`;
+  } else {
+    imgNumber = 4;
+    imageProduct.src = ` ./images/image-product-${imgNumber}.jpg`;
+  }
+};
+nextButton.addEventListener(`click`, nextImage);
+previousButton.addEventListener(`click`, previousImg);
 // increase/decrease count
 
 const plusButton = document.getElementById(`plusButton`);
@@ -60,12 +167,26 @@ minusButton.addEventListener(`click`, updateingCount);
 // add/remove product from/to cart  & updateing the count number.
 
 const cart = document.querySelector(`[aria-label="cart"]`);
+const cartIcon = document.getElementById(`cartIcon`);
 const addToCart = document.getElementById(`addToCart`);
 const listProduct = document.getElementById(`listProduct`);
 const numbeOfCards = document.getElementById(`numbeOfCards`);
-
+const cartIsEmptyTitle = document.getElementById(`cartIsEmptyTitle`);
+const Chackout = document.getElementById(`Chackout`);
+Chackout.remove();
+let isListOpen = false;
+const openAndCloseListProduct = () => {
+  if (isListOpen) {
+    listProduct.style.display = `none`;
+  } else {
+    listProduct.style.display = `block`;
+  }
+  isListOpen = !isListOpen;
+};
+cartIcon.addEventListener(`click`, openAndCloseListProduct);
 const addProductToCart = () => {
   if (number > 0) {
+    cartIsEmptyTitle.remove();
     for (let i = 0; i < number; i++) {
       const newCard = document.createElement(`div`);
       const productImg = document.createElement(`img`);
@@ -101,7 +222,7 @@ const addProductToCart = () => {
       newCard.append(productImg);
       newCard.append(productNameAndPrice);
       newCard.append(removeCard);
-      listProduct.prepend(newCard);
+      listProduct.append(newCard);
       numbeOfCards.style.opacity = `1`;
       numbeOfCards.innerText = `${number}`;
       removeCard.onclick = () => {
@@ -109,10 +230,14 @@ const addProductToCart = () => {
         number -= 1;
         if (number === 0) {
           numbeOfCards.style.opacity = `0`;
+          Chackout.remove();
+          listProduct.append(cartIsEmptyTitle);
+          count.innerText = number;
         }
         numbeOfCards.innerText = `${number}`;
       };
     }
+    listProduct.append(Chackout);
   }
 };
 console.log(addToCart);
